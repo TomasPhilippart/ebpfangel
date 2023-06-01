@@ -30,58 +30,6 @@ python3 -m pip install -r requirements.txt
 
 ```shell
 ./simulator.py --password b12hn736bxe & sudo uflow -l python $!
-
-Tracing method calls in python process 2901... Ctrl-C to quit.
-CPU PID    TID    TIME(us) METHOD
-1   2901   2901   0.001    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.001    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.001    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.002    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.finalize
-1   2901   2901   0.002    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.finalize
-1   2901   2901   0.002    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/__.default_backend
-1   2901   2901   0.003    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/__.default_backend
-1   2901   2901   0.003    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.__init__
-1   2901   2901   0.003      -> /usr/lib/python3.9/abc.py.__instancecheck__
-1   2901   2901   0.003      <- /usr/lib/python3.9/abc.py.__instancecheck__
-1   2901   2901   0.004      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.algorithm
-1   2901   2901   0.004      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.algorithm
-1   2901   2901   0.004      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.create_hash_ctx
-1   2901   2901   0.004        -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.__init__
-1   2901   2901   0.005          -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op._evp_md_from_algorithm
-1   2901   2901   0.005          <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op._evp_md_from_algorithm
-1   2901   2901   0.005          -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.005            -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.006            <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.006          <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.006        <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.__init__
-1   2901   2901   0.006      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.create_hash_ctx
-1   2901   2901   0.006    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.__init__
-1   2901   2901   0.007    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.update
-1   2901   2901   0.007      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/utils.py._check_byteslike
-1   2901   2901   0.007      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/utils.py._check_byteslike
-1   2901   2901   0.008      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.update
-1   2901   2901   0.008        -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.009          -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.009          <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.009        <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.009      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.update
-1   2901   2901   0.009    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.update
-1   2901   2901   0.010    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.update
-1   2901   2901   0.010      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/utils.py._check_byteslike
-1   2901   2901   0.010      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/utils.py._check_byteslike
-1   2901   2901   0.010      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.update
-1   2901   2901   0.010        -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.011          -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.011          <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/bindings/op._openssl_assert
-1   2901   2901   0.011        <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.openssl_assert
-1   2901   2901   0.011      <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.update
-1   2901   2901   0.012    <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.update
-1   2901   2901   0.012    -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/primitives/.finalize
-1   2901   2901   0.012      -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.finalize
-1   2901   2901   0.012        -> /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.algorithm
-1   2901   2901   0.012        <- /home/laurent/.local/lib/python3.9/site-packages/cryptography/hazmat/backends/op.algorithm
-1   2901   2901   0.013        -> /usr/lib/python3.9/abc.py.__instancecheck__
-1   2901   2901   0.013        <- /usr/lib/python3.9/abc.py.__instancecheck__
 ```
 
 ## View encrypted files
