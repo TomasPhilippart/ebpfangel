@@ -6,17 +6,6 @@ The detector currently uses BCC (BPF Compiler Collection) and consists of 2 part
     - uprobe on libcrypto.so functions (EVP_EncryptInit_ex, EVP_CipherInit_ex and EVP_SealInit)
 - user space: python program that reads data from the eBPF ring buffer output map
 
-This data can then be post-processed in python by a machine learning algorithm like k-NN, SVM, RNN and others (eg. with scikit-learn or tensorflow).
-
-Note: as an exercise these programs could also be implemented with 
-- [libbpf-bootstrap](../../src/libbpf-bootstrap/README.md) - both kernel & user space written in C
-- or [libbpfgo](https://github.com/aquasecurity/libbpfgo) - only for the user-space program (replacing python)
-
-```shell
-# generate vmlinux.h when using libbpf
-bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
-```
-
 ## Install BCC
 
 Follow: https://github.com/iovisor/bcc
