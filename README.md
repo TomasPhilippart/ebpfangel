@@ -7,6 +7,7 @@ Authors: Max Willers, Tomás Philippart
 This is the final result of an Offensive Technologies research project for the MSc Security and Network Engineering program of the University of Amsterdam. This is not intended to be a final product/solution to use in any productions environment whatsoever, it is simply the byproduct of research and therefore is intended to use as so. 
 
 Slides: https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/ebpfangel-presentation.pdf
+
 Paper: (soon?)
 
 ## Software architecture
