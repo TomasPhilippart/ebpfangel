@@ -34,7 +34,7 @@ Based on these events the following features can be calculated and normalised:
 
 - for each possible sequence of event
   - average number of matches per minute
-  - maximum number of macthes per minute 
+  - maximum number of matches per minute 
 
 - possible sequences to consider
   - Open, Create, Delete
@@ -86,8 +86,9 @@ For supervised learning (SVM) we need to "label" each data sample from above wit
 
 Train the model and show predictions:
 ```shell
-./model.py --mode train
+./model.py --mode train --labels [file|data]
 ```
+
 
 Sample output:
 ```rb
@@ -114,4 +115,9 @@ Score: 1.000000
 18  30493      0      0      0      0      0      0     12     19      0      0     0    0    0     0    0     0     0    0    0   17           0
 19  30495    233   1216     17    983      0      0    278   1458     17    983   983  228    5   949   34     0   983  233   39  201           1
 20  30496      0      0      0      0      0      0      3      3      0      0     0    0    0     0    0     0     0    0    0    1           0
+```
+
+Test the model:
+```shell
+./model.py --mode test --labels [file|data]
 ```

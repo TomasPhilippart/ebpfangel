@@ -26,7 +26,8 @@ TYPE_NAMES = ['O', 'C', 'D', 'E']
 # PID offset (to avoid duplicated PIDs across detector runs)
 PID_OFFSET = 1e4
 
-LOG_DIR = '../logs/'
+LOGDIR  = '../logs/'
+DATADIR = '../data/'
 
 
 def counts(df):
@@ -78,14 +79,15 @@ def sequences(df):
 
 def main():
     # process logs in training and testing directories
-    for dir in next(os.walk(LOG_DIR))[1]:
-        logs = glob.glob(LOG_DIR + dir + '/*.csv')
+    for dir in next(os.walk(LOGDIR))[1]:
+        logs = glob.glob(LOGDIR + dir + '/*.csv')
 
         # PID collision fix (offset)
         df_arr = []
         for i,log in enumerate(logs):
             df = pd.read_csv(log)
             df['PID'] = df['PID'].map(lambda x: x + i * PID_OFFSET)
+            # df['FILE'] = log
             df_arr.append(df)
         
         df = pd.concat(df_arr, ignore_index=True, verify_integrity=True)
@@ -100,7 +102,7 @@ def main():
         # print(combined)
 
         # save to csv
-        combined.to_csv(dir + '_data.csv')
+        combined.to_csv(DATADIR + dir + '_data.csv')
 
 
 if __name__ == '__main__':

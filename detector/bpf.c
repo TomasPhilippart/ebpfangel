@@ -118,6 +118,9 @@ static __always_inline int submit_event(u32 pid, event_type_t type, event_flags_
     event->pid = pid;
     event->type = type;
     event->flags = flags;
+
+    bpf_get_current_comm(&event->comm, TASK_COMM_LEN);
+
     int ret = bpf_probe_read_user_str(event->filename, FILENAME_SIZE, filename);
     if (ret < 0) {
         bpf_probe_read_kernel_str(event->filename, FILENAME_SIZE, filename);

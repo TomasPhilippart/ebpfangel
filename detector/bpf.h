@@ -32,7 +32,9 @@ typedef struct event_flags {
 #define S_MINOR     1
 #define S_MAJOR     2
 
-#define FILENAME_SIZE    64
+// from <linux/sched.h>
+#define TASK_COMM_LEN   16
+#define FILENAME_SIZE   64
 
 // an event to be reported
 typedef u64 time_t;
@@ -43,6 +45,7 @@ typedef struct event {
     event_type_t type;
     event_flags_t flags;
     char filename[FILENAME_SIZE];
+    char comm[TASK_COMM_LEN];
 } event_t;
 
 // file stats per pid
@@ -80,6 +83,6 @@ typedef struct event_pattern {
 // configuration data, loaded from userspace into a BPF_ARRAY(1)
 typedef struct config {
     counts_t thresholds[EVENT_TYPES];   // counter thresholds for each event type
-    time_t reset_period_ns;             // nanoseconds btw counter reset
+    time_t   reset_period_ns;           // nanoseconds btw counter reset
     severity_t min_severity;            // minimum severity to report events
 } config_t;

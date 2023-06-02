@@ -51,8 +51,9 @@ class Flags(ctypes.Structure):
         ('thresholds_crossed', ctypes.c_uint8),
     ]
 
-# see <bpf.h>
+# see <bpf.h> and <linux/sched.h>
 FILENAME_SIZE = 64
+TASK_COMM_LEN = 16
 class Event(ctypes.Structure):
     _fields_ = [
         ('ts', ctypes.c_uint64),
@@ -60,6 +61,7 @@ class Event(ctypes.Structure):
         ('type', ctypes.c_uint),
         ('flags', Flags),
         ('filename', ctypes.c_char * FILENAME_SIZE),
+        ('comm', ctypes.c_char * TASK_COMM_LEN),
     ]
 
 def decode_type(t: ctypes.c_uint) -> str:
@@ -112,15 +114,19 @@ def save_data(event: Event):
 
 def print_event(_ctx, data, _size):
     event = ctypes.cast(data, ctypes.POINTER(Event)).contents
-    print("%-6d %-6d %-4s %-4s %-5s %-4s %-64s" % (
+    print("%-6d %-6d %-16s %-4s %-4s %-5s %-4s %-64s" % (
         int(event.ts / 1e6),
-        event.pid, 
+        event.pid,
+        event.comm.decode('utf-8'),
         decode_type(event.type), 
         decode_severity(event.flags.severity), 
         decode_pattern(event.flags.pattern_id), 
         decode_thresholds(event.flags.thresholds_crossed), 
         event.filename.decode('utf-8')))
     save_data(event)
+
+def runas_root() -> bool:
+    return os.getuid() == 0
 
 def main():
     b = BPF(src_file="bpf.c", cflags=["-Wno-macro-redefined"], debug=4)
@@ -141,8 +147,8 @@ def main():
     b['events'].open_ring_buffer(print_event)
 
     print("Printing file & crypto events, ctrl-c to exit.")
-    print("%-6s %-6s %-4s %-4s %-5s %-4s %-64s" % 
-          ("TS", "PID", "TYPE", "FLAG", "PATT", "TRESH", "FILENAME"))
+    print("%-6s %-16s %-6s %-4s %-4s %-5s %-4s %-64s" % 
+          ("TS", "PID", "COMM", "TYPE", "FLAG", "PATT", "TRESH", "FILENAME"))
     # header
     writer.writerow(["TS", "PID", "TYPE", "FLAG", "PATTERN", "OPEN", "CREATE", "DELETE", "ENCRYPT", "FILENAME"])
 
@@ -158,6 +164,10 @@ def main():
     f.close()
 
 if __name__ == '__main__':
+    if not runas_root():
+        print("You must run this program as root or with sudo.")
+        sys.exit()
+    
     f = open('log.csv', 'w', encoding='UTF8', newline='') # deixa ^M no fim!
     writer = csv.writer(f)
     main()
