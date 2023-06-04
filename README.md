@@ -8,7 +8,7 @@ This is the final result of an Offensive Technologies research project for the M
 
 Slides: https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/ebpfangel-presentation.pdf
 
-Paper: (soon?)
+Paper: https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/Ransomware_Detection_using_Machine_Learning_with_eBPF.pdf
 
 ## Software architecture
 
