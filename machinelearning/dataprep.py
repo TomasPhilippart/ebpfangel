@@ -79,8 +79,10 @@ def sequences(df):
 
 def main():
     # process logs in training and testing directories
-    for dir in next(os.walk(LOGDIR))[1]:
-        logs = glob.glob(LOGDIR + dir + '/*.csv')
+    # for dir in next(os.walk(LOGDIR))[1]:
+    for dir in ['training', 'testing']:
+        # sort to keep PIDs unchanged when adding files
+        logs = sorted(glob.glob(LOGDIR + dir + '/*.csv'))
 
         # PID collision fix (offset)
         df_arr = []

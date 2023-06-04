@@ -1,4 +1,4 @@
-# Machine Learning Pipeline
+# Machine Learning
 
 The machine learning pipeline consist of:
 ```mermaid
@@ -21,6 +21,26 @@ CSV file with the following columns:
   - wether the number of events of that type crossed a threshold (note we can also count without relying on BPF)
 - name of the file or name of the encryption function
 
+To remove CTRL-M characters in CSV:
+```shell
+sed -i -e 's/\r//g' log.csv
+tr -d '\r' < log.csv > log2.csv
+```
+
+Sample data:
+```rb
+TS,PID,TYPE,FLAG,PATTERN,OPEN,CREATE,DELETE,ENCRYPT,FILENAME
+19230620686273,23602,0,1,0,0,1,0,1,/sys/kernel/debug/tracing/events/syscalls/sys_enter_unlink/id
+19230621397595,1339,0,1,0,0,1,0,1,/home/laurent/epbf-adventures/project/detector/log.csv
+19230627127155,23602,0,1,0,0,1,0,1,/sys/kernel/debug/tracing/events/syscalls/sys_enter_unlinkat/id
+19230627536246,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+19230627642822,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+19230627646588,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+19230628647445,23602,0,0,0,0,0,0,0,/sys/bus/event_source/devices/uprobe/type
+19230628664828,23602,0,0,0,0,0,0,0,/sys/bus/event_source/devices/uprobe/format/retprobe
+19230646195219,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
+```
+
 ## Data preparation & feature engineering
 
 The inputs from the detector consist of file open, create, delete and encypt events.
@@ -34,7 +54,7 @@ Based on these events the following features can be calculated and normalised:
 
 - for each possible sequence of event
   - average number of matches per minute
-  - maximum number of matches per minute 
+  - maximum number of macthes per minute 
 
 - possible sequences to consider
   - Open, Create, Delete
@@ -82,13 +102,18 @@ PID
 
 ## Model development
 
+Let's first consider some simple classifiers like kNN and SVM with different kernels.
+See:
+- https://scikit-learn.org/stable/modules/neighbors.html
+- https://scikit-learn.org/stable/modules/svm.html
+
 For supervised learning (SVM) we need to "label" each data sample from above with 1 "malware" or 0 "not malware".
+
 
 Train the model and show predictions:
 ```shell
-./model.py --mode train --labels [file|data]
+./model.py --train --labels from-file
 ```
-
 
 Sample output:
 ```rb
@@ -115,9 +140,4 @@ Score: 1.000000
 18  30493      0      0      0      0      0      0     12     19      0      0     0    0    0     0    0     0     0    0    0   17           0
 19  30495    233   1216     17    983      0      0    278   1458     17    983   983  228    5   949   34     0   983  233   39  201           1
 20  30496      0      0      0      0      0      0      3      3      0      0     0    0    0     0    0     0     0    0    0    1           0
-```
-
-Test the model:
-```shell
-./model.py --mode test --labels [file|data]
 ```
