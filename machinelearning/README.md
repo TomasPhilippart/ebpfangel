@@ -8,65 +8,7 @@ graph LR
   C --> D(model evaluation)
   D --> E(prediction)
 ```
-
-## Input format
-
-CSV file with the following columns:
-- timestamp when the event is generated
-- PID of the process
-- type of event (0=open, 1=create, 2=delete, 3=encrypt)
-- severity of the event seen from BPF (according to threshold crossed and pattern matches)
-- ID of any pattern matched by BPF
-- for each event type
-  - wether the number of events of that type crossed a threshold (note we can also count without relying on BPF)
-- name of the file or name of the encryption function
-
-To remove CTRL-M characters in CSV:
-```shell
-sed -i -e 's/\r//g' log.csv
-tr -d '\r' < log.csv > log2.csv
-```
-
-Sample data:
-```rb
-TS,PID,TYPE,FLAG,PATTERN,OPEN,CREATE,DELETE,ENCRYPT,FILENAME
-19230620686273,23602,0,1,0,0,1,0,1,/sys/kernel/debug/tracing/events/syscalls/sys_enter_unlink/id
-19230621397595,1339,0,1,0,0,1,0,1,/home/laurent/epbf-adventures/project/detector/log.csv
-19230627127155,23602,0,1,0,0,1,0,1,/sys/kernel/debug/tracing/events/syscalls/sys_enter_unlinkat/id
-19230627536246,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
-19230627642822,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
-19230627646588,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
-19230628647445,23602,0,0,0,0,0,0,0,/sys/bus/event_source/devices/uprobe/type
-19230628664828,23602,0,0,0,0,0,0,0,/sys/bus/event_source/devices/uprobe/format/retprobe
-19230646195219,23602,0,0,0,0,0,0,0,/usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
-```
-
-## Data preparation & feature engineering
-
-The inputs from the detector consist of file open, create, delete and encypt events.
-These events are stored in a CSV file.
-
-Based on these events the following features can be calculated and normalised:
-
-- for each type of event (open, create, delete, encrypt)
-  - average number of events per minute (may be this is too long?)
-  - maximum number of events per minute 
-
-- for each possible sequence of event
-  - average number of matches per minute
-  - maximum number of macthes per minute 
-
-- possible sequences to consider
-  - Open, Create, Delete
-  - Open, Create, Encrypt, Delete
-  - Open, Create, Encrypt ... Encrypt, Delete (variable number of Encrypts in the middle)
-  - Delete, Delete, Delete (erasing lots of files in sequence)
-  - Open ... Open, Create ... Create, Encrypt ... Encrypt, Delete ... Delete (operations done in batch/parallel)
-
-- type of files accessed
-  - sensitive linux files like /etc/*, /var/*, /usr/*, /sys/*
-  - especially if these files are modified or created
-
+## Instructions:
 
 Prepare the data:
 ```shell
@@ -100,19 +42,11 @@ PID
 30496      0      0      0      0      0      0      3      3      0      0     0    0    0     0    0     0     0    0    0    1
 ```
 
-## Model development
-
-Let's first consider some simple classifiers like kNN and SVM with different kernels.
-See:
-- https://scikit-learn.org/stable/modules/neighbors.html
-- https://scikit-learn.org/stable/modules/svm.html
-
-For supervised learning (SVM) we need to "label" each data sample from above with 1 "malware" or 0 "not malware".
-
+### Model development
 
 Train the model and show predictions:
 ```shell
-./model.py --train --labels from-file
+./model.py --train --labels file
 ```
 
 Sample output:
