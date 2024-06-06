@@ -1,0 +1,55 @@
+site_name: ebpfangel
+site_url: https://tomasphilippart.github.io/ebpfangel
+repo_url: https://github.com/TomasPhilippart/ebpfangel
+theme:
+  icon:
+    repo: fontawesome/brands/github
+
+  name: material
+  palette: 
+
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs.sticky
+    - toc.integrate 
+    - navigation.top
+    - navigation.footer
+
+plugins:
+    - search
+    - awesome-pages
+
+nav:
+  - Overview: index.md
+  - Simulator: simulator.md
+  - Detector: detector.md
+  - Machine Learning: machinelearning.md
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/TomasPhilippart
+    - icon: fontawesome/brands/linkedin 
+      link: https://linkedin.com/in/tomasphilippart
