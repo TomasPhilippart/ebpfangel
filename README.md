@@ -1,59 +1,26 @@
 # ebpfangel - Ransomware Detection using Machine Learning with eBPF for Linux
+## [Documentation 📖](https://tomasphilippart.github.io/ebpfangel/)
 
-Authors: Max Willers, Tomás Philippart
-
-## Overview
-
-This is the final result of an Offensive Technologies research project for the MSc Security and Network Engineering program of the University of Amsterdam. This is not intended to be a final product/solution to use in any productions environment whatsoever, it is simply the byproduct of research and therefore is intended to use as so. 
-
-Slides: https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/ebpfangel-presentation.pdf
-
-Paper: https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/Ransomware_Detection_using_Machine_Learning_with_eBPF.pdf
-
-## Software architecture
-
-```mermaid
-flowchart LR
-  subgraph sandbox_VM
-    ransomware
-  end
-  ransomware --> network_hook & filesystem_hooks & crypto_hooks
-  subgraph host_kernel
-    network_hook & filesystem_hooks & crypto_hooks --> ebpf_c
-
-  end
-  subgraph host_userland
-    ebpf_c -- events --> ebpf_python
-    ebpf_python -- patterns + config --> ebpf_c
-    ebpf_python --> machine_learning
-  end
+```
+git clone https://github.com/TomasPhilippart/ebpfangel.git
 ```
 
-### eBPF C program
+> :warning: **Not a final product**: This is the final result of a research project. It is not intended to be a final product/solution to use in any productions environment whatsoever, it is simply the byproduct of research and therefore is intended to use as so.
 
-```mermaid
-flowchart LR
-  A(event) --> B(compute stats <br/>per pid)
-  B --> C(detect event pattern <br/>and threshold counts)
-  X(python) -. patterns + config .-> C
-  C --> D{report event?}
-  D -- yes --> E(submit event <br/>to ring buffer) -->F(end)
-  D -- no --> F
-```
+### Overview
 
-## Learning resources and references
+**ebpfangel** is an advanced ransomware detection system that leverages the power of eBPF and machine learning to provide real-time monitoring and protection against ransomware attacks on Linux-based systems. By integrating dynamic analysis techniques with the capabilities of eBPF, ebpfangel offers a flexible, low-overhead solution for identifying and mitigating ransomware threats.
 
-1. UNVEIL: A Large-Scale, Automated Approach to Detecting Ransomware
-2. Toward A Network-Assisted Approach for Effective Ransomware Detection
-3. Software-Defined Networking-based Crypto Ransomware Detection Using HTTP Traffic Characteristics
-4. Ransomware Detection and Classification Strategies
-5. Ransomware Detection techniques in the Dawn of Artificial Intelligence: A Survey
-6. PayBreak: Defense Against Cryptographic Ransomware
-7. Checking yourcryptography usage with eBPF (redhat, devconf 2020)
-8. A Multi-Classifier Network-based Crypto Ransomware Detection System: A Casestudy of Locky Ransomware
-9. A flow-based IDS using Machine Learning in eBPF
-10. Kernel-level tracing for detecting stegomalware and covert channels in Linux environments
-11. CryptoLock (and Drop It): Stopping Ransomware Attacks on User Data
-12. https://www.bleepingcomputer.com/news/security/linux-version-of-rtm-locker-ransomware-targets-vmware-esxi-servers/ 
-    https://blogs.vmware.com/security/2022/02/avoslocker-modern-linux-ransomware-threats.html
-    https://www.uptycs.com/blog/rtm-locker-ransomware-as-a-service-raas-linux (see yara rule)
+### How it works
+
+**ebpfangel** operates by attaching eBPF programs to key system calls and user-space functions. These programs are triggered by specific events, such as file operations and encryption activities, allowing for comprehensive monitoring of system behavior. The collected data is then processed and analyzed using machine learning algorithms to detect patterns indicative of ransomware activity.
+
+#### Key Features
+- **Real-Time Monitoring**: eBPF programs are attached to tracepoints, kprobes, and uprobes within the Linux kernel and user-space applications, enabling real-time detection of ransomware activities.
+- **Low Overhead**: eBPF provides a lightweight mechanism for extending kernel capabilities without the need for additional kernel modules or modifications.
+- **Machine Learning Integration:** The system uses supervised machine learning to classify events and detect ransomware based on patterns in the monitored data.
+- **Open Source**: The codebase is open-source, promoting transparency, collaboration, and further development by the security community.
+
+### License
+
+The MIT License (MIT). Please see [License File](https://github.com/TomasPhilippart/ebpfangel/blob/main/LICENSE) for more information.
