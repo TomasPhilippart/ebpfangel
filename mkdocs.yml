@@ -39,18 +39,24 @@ theme:
     - navigation.tabs.sticky
     - toc.integrate 
     - navigation.top
+    - navigation.tabs
+    - toc.follow
     - navigation.footer
+    - navigation.path
     - content.code.copy
 
 plugins:
     - search
     - awesome-pages
+    - mkdocs-pdf
 
 nav:
   - Overview: index.md
   - Simulator: simulator.md
   - Detector: detector.md
   - Machine Learning: machinelearning.md
+  - Paper: paper.md
+  - Slides: slides.md
 
 extra:
   generator: false
@@ -61,6 +67,8 @@ extra:
       link: https://linkedin.com/in/tomasphilippart
 
 markdown_extensions:
+  - toc
+  - attr_list
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
