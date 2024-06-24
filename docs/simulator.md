@@ -3,39 +3,39 @@
 ## Installation
 
 ```shell
-python3 -m pip install -r requirements.txt
+$ python3 -m pip install -r requirements.txt
 ```
 
 ## Encrypt files
 
 ```shell
 # encrypt temporary files in /tmp/tmpxxx
-./simulator.py --password xu18d7wfe2edt
+$ ./simulator.py --password xu18d7wfe2edt
 
 # encrypt files in given directory
-./simulator --dir /path/to/dir --password xu18d7wfe2edt
+$ ./simulator --dir /path/to/dir --password xu18d7wfe2edt
 ```
 
 ## Decrypt files
 
 ```shell
 # decrypt temporary files in /tmp/tmpxxx
-./simulator.py --mode decrypt --password xu18d7wfe2edt
+$ ./simulator.py --mode decrypt --password xu18d7wfe2edt
 
 # decrypt files in given directory
-./simulator.py --mode decrypt --dir /path/to/dir --password xu18d7wfe2edt
+$ ./simulator.py --mode decrypt --dir /path/to/dir --password xu18d7wfe2edt
 ```
 
 ## Tracing python execution flow
 
 ```shell
-./simulator.py --password b12hn736bxe & sudo uflow -l python $!
+$ ./simulator.py --password b12hn736bxe & sudo uflow -l python $!
 ```
 
 ## View encrypted files
 
 ```shell
-xxd UTC.aes
+$ xxd UTC.aes
 
 00000000: 4145 5302 0000 1b43 5245 4154 4544 5f42  AES....CREATED_B
 00000010: 5900 7079 4165 7343 7279 7074 2036 2e30  Y.pyAesCrypt 6.0

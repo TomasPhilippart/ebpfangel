@@ -1,18 +1,35 @@
 # Machine Learning
 
-The machine learning pipeline consist of:
+The machine learning pipeline follows a simple flow:
+
 ```mermaid
 graph LR
-  A(events from detector) --> B(data preparation <br/>& feature engineering)
-  B --> C(model development <br/>& training)
-  C --> D(model evaluation)
-  D --> E(prediction)
+  A(Events from detector) --> B(Data preparation <br/>& feature engineering)
+  B --> C(Model development <br/>& training)
+  C --> D(Model evaluation)
+  D --> E(Prediction)
 ```
+
+Events are received from the Python detector frontend program, which formats them into a .csv consisting of a row per event with columns that are the features used for our classifier to base its predictions on.
+
+Based on the events received, the following features can be computed and normalised. This step corresponds to the Data preparation & feature engineering step, which is performed by the dataprep.py program:
+  - For each type of event:
+    - Average number of events per second;
+    - Maximum number of events per second (rate); 
+    - Total number of events.
+  - For each possible event patterns:
+    - Average number of pattern matches per second;
+    - Maximum number of patterns matches per second (rate); 
+    Total number of pattern matches.
+  - Type of files accessed:
+    - Sensitive Linux files (e.g., /etc/, /var/, /usr/, /sys/), especially if they are modified or created.
+
+
 ## Instructions
 
 Prepare the data:
 ```shell
-./dataprep.py
+$ ./dataprep.py
 ```
 
 Sample output:
@@ -46,7 +63,7 @@ PID
 
 Train the model and show predictions:
 ```shell
-./model.py --train --labels file
+$ ./model.py --train --labels file
 ```
 
 Sample output:

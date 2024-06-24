@@ -8,35 +8,38 @@ The detector currently uses BCC (BPF Compiler Collection) and consists of 2 part
 
 This data can then be post-processed in python by a machine learning algorithm like k-NN, SVM, RNN and others (eg. with scikit-learn or tensorflow).
 
-Note: as an exercise these programs could also be implemented with 
+Note: as an exercise these programs could also be implemented with:
 - [libbpf-bootstrap](https://github.com/libbpf/libbpf-bootstrap) - both kernel & user space written in C
 - or [libbpfgo](https://github.com/aquasecurity/libbpfgo) - only for the user-space program (replacing python)
 
 ```shell
 # generate vmlinux.h when using libbpf
-bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+$ bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 ```
 
-## Install BCC
+## BCC (BPF Compiler Collection)
 
-Follow: https://github.com/iovisor/bcc
-
-```bash
-# example for debian
-echo deb http://cloudfront.debian.net/debian sid main >> /etc/apt/sources.list
-sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
-```
-
-## Introduction to BCC
+BCC is a toolkit for creating efficient kernel tracing and manipulation programs, and includes several useful tools and examples. It makes use of extended BPF (Berkeley Packet Filters), formally known as eBPF, a new feature that was first added to Linux 3.15. Much of what BCC uses requires Linux 4.1 and above.
 
 See explanations, sample programs, available hooks and format in [bcc](https://github.com/iovisor/bcc/blob/master/README.md).
 
 See also [BCC reference guide](https://github.com/iovisor/bcc/blob/master/docs/reference_guide.md).
 
-## Run the detector
+### Install BCC
+
+Follow: https://github.com/iovisor/bcc
+
+```bash
+# example for debian
+$ echo deb http://cloudfront.debian.net/debian sid main >> /etc/apt/sources.list
+$ sudo apt-get install -y bpfcc-tools libbpfcc libbpfcc-dev linux-headers-$(uname -r)
+```
+
+
+## Running the detector
 
 ```shell
-sudo ./detector.py
+$ sudo ./detector.py
 ```
 
 ## Sample output
