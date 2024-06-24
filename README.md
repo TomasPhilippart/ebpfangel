@@ -1,17 +1,45 @@
-# ebpfangel - Ransomware Detection using Machine Learning with eBPF for Linux
-## [Documentation 📖](https://tomasphilippart.github.io/ebpfangel/)
-
-Authors: Max Willers, Tomás Philippart
-
 <a href="https://ebpfangel.philippart.me/">
-<picture>
+<picture aling="center">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/ebpfangel-logo-white.png">
   <img alt="Logo" src="docs/assets/ebpfangel-logo-black.png">
 </picture>
 </a>
 
+<h2 align="center">
+Ransomware Detection using Machine Learning with eBPF for Linux
+</h2>
+
+
+
+<p align="center">
+  Authors: <br>
+  <a href="https://www.linkedin.com/in/max-willers-53830b268">Max Willers</a> •
+  <a href="https://www.linkedin.com/in/tomasphilippart/">Tomás Philippart</a>
+</p>
+
+
+
+<p align="center">
+  <a href="https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/Ransomware_Detection_using_Machine_Learning_with_eBPF.pdf">Paper</a> •
+  <a href="https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/ebpfangel-presentation.pdf">Presentation slides</a>
+</p>
+
+
+---
+
+<p align="center">
+  <a href="https://ebpfangel.philippart.me/">Overview</a> •
+  <a href="https://ebpfangel.philippart.me/simulator/">Simulator</a> •
+  <a href="https://ebpfangel.philippart.me/detector/">Detector</a> •
+  <a href="https://ebpfangel.philippart.me/machinelearning/">Machine Learning</a>
+</p>
+
+---
+
+
+
 ```shell
-git clone https://github.com/TomasPhilippart/ebpfangel.git
+$ git clone https://github.com/TomasPhilippart/ebpfangel.git
 ```
 
 > :warning: **Not a final product**: This is the final result of a research project. It is not intended to be a final product/solution to use in any productions environment whatsoever, it is simply the byproduct of research and therefore is intended to use as so.
