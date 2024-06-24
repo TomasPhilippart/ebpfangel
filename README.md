@@ -3,10 +3,12 @@
 
 Authors: Max Willers, Tomás Philippart
 
+<a href="https://ebpfangel.philippart.me/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/ebpfangel-logo-white.png">
   <img alt="Logo" src="docs/assets/ebpfangel-logo-black.png">
 </picture>
+</a>
 
 ```shell
 git clone https://github.com/TomasPhilippart/ebpfangel.git
