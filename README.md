@@ -9,6 +9,11 @@
 Ransomware Detection using Machine Learning with eBPF for Linux
 </h2>
 
+<p align="center">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/TomasPhilippart/ebpfangel">
+  <a href="https://ebpfangel.philippart.me/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Febpfangel.philippart.me"></a>
+</p>
+
 
 
 <p align="center">
@@ -24,8 +29,8 @@ Ransomware Detection using Machine Learning with eBPF for Linux
   <a href="https://github.com/TomasPhilippart/ebpfangel/blob/main/docs/ebpfangel-presentation.pdf">Presentation slides</a>
 </p>
 
-
 ---
+
 
 <p align="center">
   <a href="https://ebpfangel.philippart.me/">Overview</a> •
