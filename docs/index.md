@@ -50,13 +50,9 @@ There are some [open (un-assigned) issues](https://github.com/TomasPhilippart/eb
 
 ## Learning resources and references
 
-### In Proceedings
-
 - [UNVEIL: A Large-Scale, Automated Approach to Detecting Ransomware](https://dl.acm.org/doi/10.1145/2976749.2978380) (Kharraz et al., 2016-08)
 
 - [A Multi-Classifier Network-Based Crypto Ransomware Detection System: A Case Study of Locky Ransomware](https://ieeexplore.ieee.org/document/8676353) (Almashhadani et al., 2019-03)
-
-### Articles
 
 - [Ransomware: Recent advances, analysis, challenges and future research directions](https://www.sciencedirect.com/science/article/pii/S016740482100314X) (Beaman et al., 2021-12)
 
@@ -74,8 +70,6 @@ There are some [open (un-assigned) issues](https://github.com/TomasPhilippart/eb
 
 - [A behavioral analysis of the ransomware strain NEFILIM](https://doi.org/10.13140/RG.2.2.18301.59360) (Groenewegen et al., 2020-10-25)
 
-### Online Resources
-
 - [The State of Ransomware 2022](https://www.sophos.com/en-us/content/state-of-ransomware) (SOPHOS, 2022-04)
 
 - [IceFire ransomware now encrypts both Linux and Windows systems](https://www.bleepingcomputer.com/news/security/icefire-ransomware-now-encrypts-both-linux-and-windows-systems/) (Gatlan, 2023-03-09)
@@ -84,3 +78,16 @@ There are some [open (un-assigned) issues](https://github.com/TomasPhilippart/eb
 
 - [BCC](https://liuhangbin.netlify.app/post/ebpf-and-xdp/) (IO Visor Project)
 
+
+## Contributing
+
+To foster progress in the field of ransomware detection, collaboration and knowledge sharing within the research community are essential. Encouraging open collaboration, sharing of datasets, methodologies, and findings will enable researchers to collectively combat the growing threat of ransomware attacks. By fostering collaboration, we can pool resources and expertise to develop more advanced and robust ransomware detection techniques, ultimately enhancing the overall security posture against this persistent threat.
+
+If you are forking this project for your own uses, please consider creating a Pull Request with your changes.
+
+There are some [open (un-assigned) issues](https://github.com/TomasPhilippart/ebpfangel/issues) created that would be good for new comers and people who would like to contribute to the project.
+
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/TomasPhilippart/ebpfangel/blob/main/LICENSE) for more information.
