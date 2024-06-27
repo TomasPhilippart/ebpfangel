@@ -24,6 +24,15 @@ Based on the events received, the following features can be computed and normali
   - Type of files accessed:
     - Sensitive Linux files (e.g., /etc/, /var/, /usr/, /sys/), especially if they are modified or created.
 
+For the next step, we considered simple classifiers like kNN (k-Nearest Neighbors) and SVM
+(Support Vector Machine) with different kernels. SVM works particularly well for our dataset
+and purpose, since it is very effective in high-dimensional spaces and relatively memory efficient.
+
+The processed data is split into training and testing data, following a 60/40% split. This means
+that the resulting Machine Learning model is validated using data that wasn’t used for training.
+
+When new data is processed through the model, it will assign a label depending on whether it
+is classified as ransomware or benign.
 
 ## Instructions
 

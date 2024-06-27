@@ -40,6 +40,14 @@ flowchart LR
   D -- no --> F
 ```
 
+## Contributing
+
+To foster progress in the field of ransomware detection, collaboration and knowledge sharing within the research community are essential. Encouraging open collaboration, sharing of datasets, methodologies, and findings will enable researchers to collectively combat the growing threat of ransomware attacks. By fostering collaboration, we can pool resources and expertise to develop more advanced and robust ransomware detection techniques, ultimately enhancing the overall security posture against this persistent threat.
+
+If you are forking this project for your own uses, please consider creating a Pull Request with your changes.
+
+There are some [open (un-assigned) issues](https://github.com/TomasPhilippart/ebpfangel/issues) created that would be good for new comers and people who would like to contribute to the project.
+
 ## Learning resources and references
 
 ### In Proceedings
