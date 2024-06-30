@@ -13,6 +13,7 @@ graph LR
 Events are received from the Python detector frontend program, which formats them into a .csv consisting of a row per event with columns that are the features used for our classifier to base its predictions on.
 
 Based on the events received, the following features can be computed and normalised. This step corresponds to the Data preparation & feature engineering step, which is performed by the dataprep.py program:
+
   - For each type of event:
     - Average number of events per second;
     - Maximum number of events per second (rate); 
