@@ -43,12 +43,12 @@ static __always_inline pidstat_t *get_stats(u32 *pid) {
 }
 
 // update pid stats (but does not save)
-static __always_inline void update_stats(config_t *conf, event_type_t type, const pidstat_t *current, pidstat_t *updated) {
-   __builtin_memcpy(updated, current, sizeof(*updated));
+static __always_inline void update_stats(config_t *conf, event_type_t type, const pidstat_t *curr, pidstat_t *updated) {
+   __builtin_memcpy(updated, curr, sizeof(*updated));
 
     time_t now = bpf_ktime_get_ns();
-    time_t time_since_reset = now - current->last_reset_ts;
-    if (conf && current->last_reset_ts && (time_since_reset > conf->reset_period_ns)) {
+    time_t time_since_reset = now - curr->last_reset_ts;
+    if (conf && curr->last_reset_ts && (time_since_reset > conf->reset_period_ns)) {
         // reset counters
         __builtin_memset(updated->event_counts, 0, sizeof(counts_t) * EVENT_TYPES);
         updated->last_reset_ts = now;
@@ -71,7 +71,7 @@ static __always_inline void update_stats(config_t *conf, event_type_t type, cons
             break;
     }
     // shift and add the event_type
-    updated->event_bitmap = (current->event_bitmap << BITS_PER_EVENT) | (bitmap_t)type;
+    updated->event_bitmap = (curr->event_bitmap << BITS_PER_EVENT) | (bitmap_t)type;
 }
 
 // analyse pid stats and compute flags
@@ -138,15 +138,15 @@ static __always_inline int update_and_submit(event_type_t type, const char* file
     config_t *conf = get_config();
 
     // get stats from BPF_HASH
-    pidstat_t *current = get_stats(&pid);
-    if (!current) {
+    pidstat_t *curr = get_stats(&pid);
+    if (!curr) {
         // cleanup old pid entries in pidstats?
         return 0;
     }
 
     // update stats
     pidstat_t updated;
-    update_stats(conf, type, current, &updated);
+    update_stats(conf, type, curr, &updated);
 
     // analyse stats
     event_flags_t flags;
