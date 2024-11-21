@@ -80,7 +80,6 @@ static __always_inline void analyze_stats(config_t *conf, pidstat_t* stats, even
 
     // check counters
     // TODO: consider counts per unit of time & reset counts after some delay    
-    #pragma clang loop unroll(full)
     for (u8 i=0; i < EVENT_TYPES; i++) {
         if (conf && stats->event_counts[i] > conf->thresholds[i]) {
             // set the i-th bit to 1
@@ -90,7 +89,6 @@ static __always_inline void analyze_stats(config_t *conf, pidstat_t* stats, even
     }
 
     // check pattern matches
-    #pragma clang loop unroll(full)
     for (u8 i=0; i < MAX_PATTERNS; i++) {
         int k = i;
         event_pattern_t *pat = patterns.lookup(&k);
